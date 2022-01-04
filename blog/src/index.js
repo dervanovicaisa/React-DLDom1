@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import Post from "./Routes/Post";
+import { Post } from "./Routes/Post";
 import PostCreate from "./Routes/PostCreate";
 import Navbar from "./Components/Navbar";
 import reportWebVitals from "./reportWebVitals";
@@ -14,7 +14,7 @@ ReactDOM.render(
       <Navbar />
       <Routes>
         <Route exact path="/" element={<App />} />
-        <Route path="/:id" element={<Post />} />
+        <Route path="/post-details/:id" element={<Post />} />
         <Route path="/add-post" element={<PostCreate />} />
       </Routes>
       {/* <App /> */}
