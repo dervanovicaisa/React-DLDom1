@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Navbar />
-      <div className="container">
+      <div>
         <Routes>
           <Route exact path="/" element={<App />} />
           <Route path="/post-details/:id" element={<Post />} />
