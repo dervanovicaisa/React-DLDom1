@@ -1,23 +1,28 @@
 import React from "react";
-
 import { useLocation } from "react-router-dom";
 export function Post() {
   const location = useLocation();
   const from = location.state;
-  console.log(from.props.cardInfo);
   return (
     <div className="row">
-      <div className="col">
-        <div className="post">
+      <div className="col s6">
+        <div className="card">
           <div className="card-image">
-            <img src={from.props.cardInfo.url_image} className="resposive-img" alt="img" width={200} />
-            <span className="card-title">{from.props.cardInfo.title}</span>
+            <img
+              src={
+                "https://simple-posts-api-app.herokuapp.com/Uploads/" +
+                from.props.cardInfo.Image
+              }
+              alt="img"
+            />
           </div>
-          <div className="card-content container">
-            <p>{from.props.cardInfo.description}</p>
+          <div className="card-content ">
+            <span className="card-title">{from.props.cardInfo.Title}</span>
+            <p>{from.props.cardInfo.Post}</p>
             <hr />
-            <p className="blue-text right-align">Author: {from.props.cardInfo.author}</p>
-
+            <p className="blue-text right-align">
+              Author: {from.props.cardInfo.Author}
+            </p>
           </div>
         </div>
       </div>
