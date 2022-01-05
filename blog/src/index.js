@@ -12,12 +12,13 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route exact path="/" element={<App />} />
-        <Route path="/post-details/:id" element={<Post />} />
-        <Route path="/add-post" element={<PostCreate />} />
-      </Routes>
-      {/* <App /> */}
+      <div>
+        <Routes>
+          <Route exact path="/" element={<App />} />
+          <Route path="/post-details/:id" element={<Post />} />
+          <Route path="/add-post" element={<PostCreate />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

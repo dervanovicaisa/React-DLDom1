@@ -55,6 +55,7 @@
   text-align: center;
 }
 
+
 .post .card-title {
   position: absolute;
   z-index: 100;
@@ -71,4 +72,18 @@
 .post .card-content{
   width: 49%;
   padding: 2em;
+}
+
+.p-4{
+  padding: 4px;
+}
+
+.centralize{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#formPost{
+  margin-top: 5%;
 }

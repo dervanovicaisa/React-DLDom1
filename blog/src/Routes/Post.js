@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useLocation } from "react-router-dom";
 export function Post() {
   const location = useLocation();
@@ -16,6 +17,7 @@ export function Post() {
             <p>{from.props.cardInfo.description}</p>
             <hr />
             <p className="blue-text right-align">Author: {from.props.cardInfo.author}</p>
+
           </div>
         </div>
       </div>
