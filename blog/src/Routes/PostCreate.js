@@ -7,23 +7,23 @@ const PostCreate = () => {
     // const apiURL = "https://simple-posts-api-app.herokuapp.com/api/post";
     const apiURL = "http://localhost:8080/api/post";
 
-    const dataJSON = {
+    const data = {
       Title: event.target[0].value,
       Author: event.target[1].value,
       Post: event.target[2].value,
       Image: event.target[3].files[0].name,
     };
-    var data = new FormData();
-    data.append("file", event.target[3].files[0]);
-    data.append("data", dataJSON);
+    // var data = new FormData();
+    // data.append("file", event.target[3].files[0]);
+    // data.append("data", dataJSON);
 
     fetch(apiURL, {
       method: "POST",
       headers: {
-        // "Content-Type": "application/json",
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
+        // "Content-Type": "multipart/form-data",
       },
-      body: data,
+      body: JSON.stringify(data),
     })
       .then((response) => {
         console.log(response);
