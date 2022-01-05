@@ -20,7 +20,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     fetch(
-      "https://gist.githubusercontent.com/dervanovicaisa/6b2bde755842e3cdc169dfe5a121a9ae/raw/e2bdf69adcba5925d8f44a1d6f5a3974116da1d2/blogs.json"
+      "https://jsonblob.com/api/928290770121932800"
     )
       .then((response) => {
         return response.json();
