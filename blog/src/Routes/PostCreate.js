@@ -1,39 +1,116 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const PostCreate = () => {
-  var handleSubmitForm = (event) => {
+const PostCreate = (props) => {
+  let navigate = useNavigate();
+  const [valid, setValid] = useState(Array(6).fill(true));
+  const [errorMessages, setErrorMessages] = useState(Array(6).fill(null));
+
+  var setValidation = (validType, i, errorMessage = "") => {
+    var validTemp = valid;
+    validTemp[i] = validType;
+
+    var errorMessagesTemp = errorMessages;
+    errorMessagesTemp[i] = errorMessage;
+
+    setValid(validTemp);
+    setErrorMessages(errorMessagesTemp);
+  };
+  var createNotification = (type, errorMessage = "") => {
+    const options = {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    };
+    switch (type) {
+      case "success":
+        toast.success("Successful request", options);
+        break;
+      case "warning":
+        toast.warn(errorMessage, options);
+
+        break;
+      case "error":
+        toast.error("Unexpected error", options);
+        break;
+      default:
+    }
+  };
+
+  var handleSubmitForm = async (event) => {
     event.preventDefault();
-    // const apiURL = "https://simple-posts-api-app.herokuapp.com/api/post";
-    const apiURL = "http://localhost:8080/api/post";
+
+    const apiURL = "https://simple-posts-api-app.herokuapp.com/api/post";
+    // const apiURL = "http://localhost:8080/api/post";
+
+    // Validacija
+    for (var i = 0; i < 3; i++) {
+      const element = event.target[i];
+      const length = element.value.length;
+      switch (element.name) {
+        case "Title":
+          if (length > 20)
+            setValidation(false, 0, "Naslov je veci od 20 karaktera!");
+          else setValidation(true, 0);
+
+          break;
+        case "Author":
+          if (length > 20)
+            setValidation(false, 1, "Naziv autora je veci od 20 karaktera!");
+          else setValidation(true, 1);
+
+          break;
+        case "Post":
+          if (length > 250)
+            setValidation(false, 2, "Post je veci od 250 karaktera!");
+          else setValidation(true, 2);
+
+          break;
+
+        default:
+      }
+    }
+
+    if (valid.includes(false)) {
+      for (var i = 0; i < 6; i++) {
+        var validTemp = valid;
+        var errorMessagesTemp = errorMessages;
+        if (!validTemp[i]) {
+          createNotification("warning", errorMessagesTemp[i]);
+        }
+      }
+
+      return;
+    }
 
     const dataJSON = {
       Title: event.target[0].value,
       Author: event.target[1].value,
       Post: event.target[2].value,
-      Image: event.target[3].files[0].name,
+      Image: event.target[3].files[0]?.name,
     };
     var data = new FormData();
     data.append("file", event.target[3].files[0]);
-    data.append("data", dataJSON);
+    data.append("data", JSON.stringify(dataJSON));
 
     fetch(apiURL, {
       method: "POST",
-      headers: {
-        // "Content-Type": "application/json",
-        "Content-Type": "multipart/form-data",
-      },
       body: data,
     })
       .then((response) => {
         console.log(response);
-        console.log(data);
-        // let blobUrl = response.headers.get("Location");
-        // this.createNotification("success");
-        // console.log(blobUrl, "BLOB URL");
+        createNotification("success");
+        navigate("/");
       })
       .catch((error) => {
-        this.createNotification("error");
+        createNotification("error");
         console.log(error);
       });
 
@@ -51,18 +128,22 @@ const PostCreate = () => {
                 <div className="input-field col s6">
                   <input
                     id="title"
+                    name="Title"
                     type="text"
                     className="validate"
                     data-length="20"
+                    required
                   />
                   <label htmlFor="title">Title</label>
                 </div>
                 <div className="input-field col s6">
                   <input
                     id="author"
+                    name="Author"
                     type="text"
                     className="validate"
                     data-length="20"
+                    required
                   />
                   <label htmlFor="author">Author</label>
                 </div>
@@ -71,8 +152,10 @@ const PostCreate = () => {
                 <div className="input-field col s12">
                   <textarea
                     id="post"
+                    name="Post"
                     className="materialize-textarea"
                     data-length="250"
+                    required
                   ></textarea>
                   <label htmlFor="post">Post</label>
                 </div>
@@ -85,12 +168,13 @@ const PostCreate = () => {
                       <i className="material-icons">cloud_queue</i> Choose a
                       picture
                     </span>
-                    <input type="file" />
+                    <input type="file" name="ImageBlob" />
                   </div>
                   <div className="file-path-wrapper">
                     <input
                       className="file-path validate"
                       type="text"
+                      name="Image"
                       placeholder="Upload picture"
                     />
                   </div>

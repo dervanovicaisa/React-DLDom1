@@ -7,6 +7,7 @@ import { Post } from "./Routes/Post";
 import PostCreate from "./Routes/PostCreate";
 import Navbar from "./Components/Navbar";
 import reportWebVitals from "./reportWebVitals";
+import { ToastContainer } from "react-toastify";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.render(
           <Route path="/add-post" element={<PostCreate />} />
         </Routes>
       </div>
+      <ToastContainer />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
