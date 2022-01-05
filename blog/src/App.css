@@ -43,3 +43,13 @@
 .p-4{
   padding: 4px;
 }
+
+.centralize{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#formPost{
+  margin-top: 5%;
+}
