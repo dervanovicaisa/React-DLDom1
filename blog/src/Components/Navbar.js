@@ -1,13 +1,14 @@
 import React from "react";
+import logo from "../img/blog.png"
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div>
-      <nav className="blue-grey lighten-5">
-        <div className="nav-wrapper p-4">
+      <nav className="white">
+        <div className="nav-wrapper">
           <Link to="/" className="brand-logo blue-text">
-            Blog
+            <img src={logo} alt="logo" className="responsive-img" width="40" />
           </Link>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li className="btn blue">

@@ -48,8 +48,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h3 className="title text-center">All Posts</h3>
-        <div className="row">{this.blogsToShow()}</div>
+        <h3 className="title center-align">All Posts</h3>
+        <div className="row container">{this.blogsToShow()}</div>
       </div>
     );
   }
