@@ -1,23 +1,23 @@
 import React from "react";
 
-export function Post(props) {
-  // console.log(props.location.aboutProps);
+import { useLocation } from "react-router-dom";
+export function Post() {
+  const location = useLocation();
+  const from = location.state;
+  console.log(from.props.cardInfo);
   return (
-    <div>
-      <div className="row">
-        <div className="col s12">
-          <div className="card">
-            <div className="card-image">
-              <img src="images/sample-1.jpg" alt="img" />
-              <span className="card-title">Card Title</span>
-            </div>
-            <div className="card-content">
-              <p>
-                I am a very simple card. I am good at containing small bits of
-                information. I am convenient because I require little markup to
-                use effectively.
-              </p>
-            </div>
+    <div className="row">
+      <div className="col">
+        <div className="post">
+          <div className="card-image">
+            <img src={from.props.cardInfo.url_image} className="resposive-img" alt="img" width={200} />
+            <span className="card-title">{from.props.cardInfo.title}</span>
+          </div>
+          <div className="card-content container">
+            <p>{from.props.cardInfo.description}</p>
+            <hr />
+            <p className="blue-text right-align">Author: {from.props.cardInfo.author}</p>
+
           </div>
         </div>
       </div>
