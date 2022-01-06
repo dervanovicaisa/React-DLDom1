@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export function Card(props) {
+  var addSpace = (len) => {
+    const spaces = Array(len).fill("");
+    return spaces.join(" ");
+  };
   return (
     <Link to={`/post-details/${props.cardInfo.PostID}`} state={{ props }}>
       <div className="col s4">
@@ -24,7 +28,9 @@ export function Card(props) {
           <div className="card-content">
             <p className="black-text">
               {" "}
-              {props.cardInfo.Post.substring(0, 210)}
+              {props.cardInfo.Post.substring(0, 100).length < 100
+                ? props.cardInfo.Post
+                : props.cardInfo.Post.substring(0, 100) + "..."}
             </p>
             <hr />
             <p className="blue-text right-align">

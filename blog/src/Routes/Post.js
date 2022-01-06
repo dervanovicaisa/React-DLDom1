@@ -14,6 +14,11 @@ export function Post() {
                 from.props.cardInfo.Image
               }
               alt="img"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src =
+                  "https://simple-posts-api-app.herokuapp.com/Uploads/notfound.jpg";
+              }}
             />
           </div>
           <div className="card-content ">
