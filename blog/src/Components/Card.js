@@ -13,6 +13,11 @@ export function Card(props) {
                 props.cardInfo.Image
               }
               alt="cover img"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src =
+                  "https://simple-posts-api-app.herokuapp.com/Uploads/notfound.jpg";
+              }}
             />
             <h5 className="center-align">{props.cardInfo.Title}</h5>
           </div>
