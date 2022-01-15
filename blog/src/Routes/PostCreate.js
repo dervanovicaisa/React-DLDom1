@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "/react-toastify/dist/ReactToastify.css";
 
 const PostCreate = (props) => {
   let navigate = useNavigate();
@@ -92,11 +92,11 @@ const PostCreate = (props) => {
     }
 
     if (valid.includes(false)) {
-      for (var i = 0; i < 6; i++) {
+      for (var j = 0; j < 6; j++) {
         var validTemp = valid;
         var errorMessagesTemp = errorMessages;
-        if (!validTemp[i]) {
-          createNotification("warning", errorMessagesTemp[i]);
+        if (!validTemp[j]) {
+          createNotification("warning", errorMessagesTemp[j]);
         }
       }
 
