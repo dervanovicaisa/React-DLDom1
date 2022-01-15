@@ -85,3 +85,11 @@
 #formPost{
   margin-top: 5%;
 }
+.card-image{
+  height: 56% !important;
+}
+
+.card-image > img{
+  object-fit: fill;
+  height: 100%;
+}

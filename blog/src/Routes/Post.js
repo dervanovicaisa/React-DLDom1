@@ -5,14 +5,11 @@ export function Post() {
   const from = location.state;
   return (
     <div className="row">
-      <div className="col s6">
-        <div className="card">
+      <div className="col l4 m6 s10 offset-l4 offset-m3 offset-s1">
+        <div className="card hoverable">
           <div className="card-image">
             <img
-              src={
-                "https://simple-posts-api-app.herokuapp.com/Uploads/" +
-                from.props.cardInfo.Image
-              }
+              src={from.props.cardInfo.Image}
               alt="img"
               onError={(e) => {
                 e.target.onerror = null;

@@ -44,6 +44,19 @@ const PostCreate = (props) => {
     }
   };
 
+  var fileToDataUri = (file) =>
+    new Promise((resolve, reject) => {
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          resolve(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        resolve("");
+      }
+    });
+
   var handleSubmitForm = async (event) => {
     event.preventDefault();
 
@@ -89,12 +102,12 @@ const PostCreate = (props) => {
 
       return;
     }
-
+    const img = await fileToDataUri(event.target[3].files[0]);
     const dataJSON = {
       Title: event.target[0].value,
       Author: event.target[1].value,
       Post: event.target[2].value,
-      Image: event.target[3].files[0]?.name,
+      Image: img,
     };
     var data = new FormData();
     data.append("file", event.target[3].files[0]);
